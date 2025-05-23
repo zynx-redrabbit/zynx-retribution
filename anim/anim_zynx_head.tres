@@ -1,0 +1,104 @@
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://cp1y57w3q20xs"]
+
+[ext_resource type="Texture2D" uid="uid://3omoc6ngke5m" path="res://art/head/trabble_run_0001.png" id="1_qw085"]
+[ext_resource type="Texture2D" uid="uid://dsie3wktnbww4" path="res://art/head/trabble_run_0002.png" id="2_blurd"]
+[ext_resource type="Texture2D" uid="uid://bkrxq3mflkild" path="res://art/head/trabble_run_0003.png" id="3_4qds5"]
+[ext_resource type="Texture2D" uid="uid://c7283deq0lpot" path="res://art/head/trabble_run_0004.png" id="4_3srhn"]
+[ext_resource type="Texture2D" uid="uid://sst20obgreah" path="res://art/head/trabble_run_0005.png" id="5_h5b0l"]
+[ext_resource type="Texture2D" uid="uid://8882ohcoih21" path="res://art/head/trabble_run_0006.png" id="6_rwu7b"]
+[ext_resource type="Texture2D" uid="uid://dk5js87lav0j8" path="res://art/head/trabble_jump_0000.png" id="7_krevc"]
+[ext_resource type="Texture2D" uid="uid://bfq7plh3558dt" path="res://art/head/trabble_jump_0001.png" id="8_yq77g"]
+[ext_resource type="Texture2D" uid="uid://be50pas104utk" path="res://art/head/trabble_jump_0002.png" id="9_epkf4"]
+[ext_resource type="Texture2D" uid="uid://o28j8fcbcm3m" path="res://art/head/trabble_jump_0003.png" id="10_qdqoa"]
+[ext_resource type="Texture2D" uid="uid://dc4ycqn2eejhf" path="res://art/head/trabble_jump_0004.png" id="11_ppqo1"]
+[ext_resource type="Texture2D" uid="uid://btqud33rs2sp6" path="res://art/head/trabble_jump_0005.png" id="12_jjtkp"]
+[ext_resource type="Texture2D" uid="uid://dsu07a6dgw7cl" path="res://art/head/trabble_jump_0006.png" id="13_s1qjl"]
+[ext_resource type="Texture2D" uid="uid://i1cvtu2weaw7" path="res://art/head/trabble_jump_0007.png" id="14_txwrb"]
+[ext_resource type="Texture2D" uid="uid://bmvteojuwhu3g" path="res://art/head/trabble_jump_0008.png" id="15_5q6ys"]
+[ext_resource type="Texture2D" uid="uid://b6gq8q7a10cpa" path="res://art/head/trabble_glider_0001.png" id="16_s1qjl"]
+[ext_resource type="Texture2D" uid="uid://mbarw457indn" path="res://art/head/trabble_glider_0002.png" id="17_txwrb"]
+[ext_resource type="Texture2D" uid="uid://c5f403bjjst5o" path="res://art/head/trabble_glider_0003.png" id="18_5q6ys"]
+[ext_resource type="Texture2D" uid="uid://b4g4hv5o6q8t1" path="res://art/head/trabble_glider_0004.png" id="19_tob0d"]
+[ext_resource type="Texture2D" uid="uid://c3srtkox005jg" path="res://art/head/trabble_glider_0005.png" id="20_7faq5"]
+[ext_resource type="Texture2D" uid="uid://bf2jp4fwuchuh" path="res://art/head/trabble_glider_0006.png" id="21_5ktcr"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_krevc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yq77g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_epkf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qdqoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ppqo1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jjtkp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s1qjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_txwrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5q6ys")
+}],
+"loop": true,
+"name": &"default_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qw085")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_blurd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4qds5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3srhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h5b0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rwu7b")
+}],
+"loop": true,
+"name": &"default_run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_s1qjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_txwrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_5q6ys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_tob0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7faq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5ktcr")
+}],
+"loop": true,
+"name": &"default_shell",
+"speed": 15.0
+}]

@@ -1,0 +1,104 @@
+[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://dfwljrj1drwvn"]
+
+[ext_resource type="Texture2D" uid="uid://bebwl4sjjdvd" path="res://art/default/default_run_0001.png" id="1_c1fgw"]
+[ext_resource type="Texture2D" uid="uid://cfbm46p2uwrr0" path="res://art/default/default_run_0002.png" id="2_b3b3c"]
+[ext_resource type="Texture2D" uid="uid://doymjnfthyv5v" path="res://art/default/default_run_0003.png" id="3_qxsya"]
+[ext_resource type="Texture2D" uid="uid://bm108jcyxooxl" path="res://art/default/default_run_0004.png" id="4_qk13v"]
+[ext_resource type="Texture2D" uid="uid://bfulxu1l1rma7" path="res://art/default/default_run_0005.png" id="5_8v2nb"]
+[ext_resource type="Texture2D" uid="uid://cfcnc5piw537u" path="res://art/default/default_run_0006.png" id="6_vfx54"]
+[ext_resource type="Texture2D" uid="uid://b8y0x2nuhmv4s" path="res://art/default/default_jump_0000.png" id="7_g44fx"]
+[ext_resource type="Texture2D" uid="uid://iwxvp1xulp4c" path="res://art/default/default_jump_0001.png" id="8_8gpxk"]
+[ext_resource type="Texture2D" uid="uid://s28ncw6qeqvs" path="res://art/default/default_jump_0002.png" id="9_kotpm"]
+[ext_resource type="Texture2D" uid="uid://bjarisi0cebs5" path="res://art/default/default_jump_0003.png" id="10_xxll7"]
+[ext_resource type="Texture2D" uid="uid://cf4nmxdsk65g2" path="res://art/default/default_jump_0004.png" id="11_6ayfg"]
+[ext_resource type="Texture2D" uid="uid://dokelkegq2mgy" path="res://art/default/default_jump_0005.png" id="12_d6wy5"]
+[ext_resource type="Texture2D" uid="uid://bgewexl14e6ux" path="res://art/default/default_jump_0006.png" id="13_scbka"]
+[ext_resource type="Texture2D" uid="uid://mi0ovuj52tsh" path="res://art/default/default_jump_0007.png" id="14_3mfv5"]
+[ext_resource type="Texture2D" uid="uid://b6gf2en1y505p" path="res://art/default/default_jump_0008.png" id="15_7dmgd"]
+[ext_resource type="Texture2D" uid="uid://ukxju8yl4ebl" path="res://art/default/default_glider_0001.png" id="16_scbka"]
+[ext_resource type="Texture2D" uid="uid://dfa40wrfh3gvm" path="res://art/default/default_glider_0002.png" id="17_3mfv5"]
+[ext_resource type="Texture2D" uid="uid://chwdplr3ypgy6" path="res://art/default/default_glider_0003.png" id="18_7dmgd"]
+[ext_resource type="Texture2D" uid="uid://daaxa5qnm8as4" path="res://art/default/default_glider_0004.png" id="19_8ddby"]
+[ext_resource type="Texture2D" uid="uid://cqwh8sawbxlpg" path="res://art/default/default_glider_0005.png" id="20_kncng"]
+[ext_resource type="Texture2D" uid="uid://dudx7ukjsgpmy" path="res://art/default/default_glider_0006.png" id="21_4nogw"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_g44fx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8gpxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kotpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xxll7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6ayfg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_d6wy5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_scbka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3mfv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_7dmgd")
+}],
+"loop": true,
+"name": &"default_jump",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c1fgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b3b3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qxsya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qk13v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8v2nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vfx54")
+}],
+"loop": true,
+"name": &"default_run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_scbka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3mfv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dmgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8ddby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kncng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4nogw")
+}],
+"loop": true,
+"name": &"default_shell",
+"speed": 15.0
+}]

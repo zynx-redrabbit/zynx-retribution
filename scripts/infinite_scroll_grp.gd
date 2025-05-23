@@ -24,10 +24,6 @@ func _ready() -> void:
 
 func get_all_children() -> Array[Sprite2D]:
 	for N in self.get_children():
-		if N.get_child_count() > 0:
-			self.sprites.append(N)
-			self.sprites.append_array(self.get_all_children())
-		else:
 			self.sprites.append(N)
 
 	return self.sprites

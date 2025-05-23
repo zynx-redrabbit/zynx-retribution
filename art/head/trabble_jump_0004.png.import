@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o28j8fcbcm3m"
-path="res://.godot/imported/trabble_jump_0003.png-a6c99aa144f8e4f5172551c12469d97b.ctex"
+uid="uid://dc4ycqn2eejhf"
+path="res://.godot/imported/trabble_jump_0004.png-7c9e691d0d965aea39f42be6ab152be2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/trabble/trabble_jump_0003.png"
-dest_files=["res://.godot/imported/trabble_jump_0003.png-a6c99aa144f8e4f5172551c12469d97b.ctex"]
+source_file="res://art/head/trabble_jump_0004.png"
+dest_files=["res://.godot/imported/trabble_jump_0004.png-7c9e691d0d965aea39f42be6ab152be2.ctex"]
 
 [params]
 

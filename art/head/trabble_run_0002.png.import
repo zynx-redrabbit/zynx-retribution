@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mbarw457indn"
-path="res://.godot/imported/trabble_glider_0002.png-1d30ddfcf6a77ed6dd3c23174d718c84.ctex"
+uid="uid://dsie3wktnbww4"
+path="res://.godot/imported/trabble_run_0002.png-b8713c8def33a99de4062b1f9ed4e86d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/trabble/trabble_glider_0002.png"
-dest_files=["res://.godot/imported/trabble_glider_0002.png-1d30ddfcf6a77ed6dd3c23174d718c84.ctex"]
+source_file="res://art/head/trabble_run_0002.png"
+dest_files=["res://.godot/imported/trabble_run_0002.png-b8713c8def33a99de4062b1f9ed4e86d.ctex"]
 
 [params]
 
