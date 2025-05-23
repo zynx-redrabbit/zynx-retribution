@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmpc6iaclkjjx"]
+
+[ext_resource type="Texture2D" uid="uid://cvjpuoav42dv7" path="res://art/level_0/bgSky.png" id="1_d5kir"]
+[ext_resource type="Script" uid="uid://cp0hopgbquuq0" path="res://scripts/infinite_scroll_grp.gd" id="1_plvai"]
+[ext_resource type="Shader" uid="uid://b6alsr7e4jyp4" path="res://shaders/scroll.gdshader" id="2_d5kir"]
+[ext_resource type="Texture2D" uid="uid://d233qf04n7h25" path="res://art/level_0/bgCastle.png" id="2_plvai"]
+[ext_resource type="Texture2D" uid="uid://xk6ep02fyeh0" path="res://art/level_0/clouds00.png" id="3_vkcgd"]
+[ext_resource type="Texture2D" uid="uid://cpx7fqmkx066b" path="res://art/level_0/bgScroll01.png" id="4_plvai"]
+[ext_resource type="Texture2D" uid="uid://dov4dfd6b7l2o" path="res://art/level_0/bgScroll00.png" id="7_r2no1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvmk3"]
+shader = ExtResource("2_d5kir")
+shader_parameter/speed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_plvai"]
+shader = ExtResource("2_d5kir")
+shader_parameter/speed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkcgd"]
+shader = ExtResource("2_d5kir")
+shader_parameter/speed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2no1"]
+shader = ExtResource("2_d5kir")
+shader_parameter/speed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dxvt"]
+shader = ExtResource("2_d5kir")
+shader_parameter/speed = 0.0
+
+[node name="level_test" type="Node2D"]
+
+[node name="infinite_scroll_grp" type="CanvasGroup" parent="."]
+script = ExtResource("1_plvai")
+scroll_speeds = Array[float]([0.0, 0.001, 0.02, 0.1, 0.2])
+
+[node name="BgSky" type="Sprite2D" parent="infinite_scroll_grp"]
+material = SubResource("ShaderMaterial_yvmk3")
+position = Vector2(-0.500015, 0.500031)
+scale = Vector2(1.12207, 0.631836)
+texture = ExtResource("1_d5kir")
+
+[node name="BgCastle" type="Sprite2D" parent="infinite_scroll_grp"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_plvai")
+position = Vector2(-106.75, -422.251)
+scale = Vector2(0.91748, 1.21338)
+texture = ExtResource("2_plvai")
+
+[node name="Clouds00" type="Sprite2D" parent="infinite_scroll_grp"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_vkcgd")
+position = Vector2(-63, -196)
+texture = ExtResource("3_vkcgd")
+
+[node name="BgScroll01" type="Sprite2D" parent="infinite_scroll_grp"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_r2no1")
+position = Vector2(-249.25, 142.5)
+scale = Vector2(1.29004, 1.23828)
+texture = ExtResource("4_plvai")
+
+[node name="BgScroll00" type="Sprite2D" parent="infinite_scroll_grp"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_7dxvt")
+position = Vector2(-65, 194)
+texture = ExtResource("7_r2no1")
