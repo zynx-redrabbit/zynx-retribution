@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdau4vjb68hcd"]
+
+[ext_resource type="Script" uid="uid://bnbkcpowrghdx" path="res://scripts/zynx.gd" id="1_8jsny"]
+[ext_resource type="SpriteFrames" uid="uid://dfwljrj1drwvn" path="res://anim/anim_zynx_body.tres" id="2_mtqu4"]
+[ext_resource type="Script" uid="uid://bvaihw7pdonvt" path="res://scripts/col.gd" id="3_11r1h"]
+[ext_resource type="SpriteFrames" uid="uid://cp1y57w3q20xs" path="res://anim/anim_zynx_head.tres" id="4_wspt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vogc1"]
+size = Vector2(117, 85)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vogc1"]
+radius = 36.3456
+
+[node name="zynx" type="CanvasGroup" node_paths=PackedStringArray("character", "colliders")]
+z_index = 7
+script = ExtResource("1_8jsny")
+character = [NodePath("body"), NodePath("head")]
+colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
+
+[node name="body" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_mtqu4")
+animation = &"default_run"
+autoplay = "default_run"
+frame_progress = 0.525921
+
+[node name="col_body" type="RigidBody2D" parent="body"]
+z_index = 100
+input_pickable = true
+script = ExtResource("3_11r1h")
+
+[node name="col_shape_body" type="CollisionShape2D" parent="body/col_body"]
+z_index = 100
+position = Vector2(0.5, 20.5)
+shape = SubResource("RectangleShape2D_vogc1")
+
+[node name="head" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_wspt0")
+animation = &"default_run"
+autoplay = "default_run"
+frame_progress = 0.233934
+
+[node name="col_head" type="RigidBody2D" parent="head"]
+input_pickable = true
+
+[node name="col_shape_head" type="CollisionShape2D" parent="head/col_head"]
+position = Vector2(57, 7)
+shape = SubResource("CircleShape2D_vogc1")
+
+[connection signal="input_event" from="body/col_body" to="." method="_on_col_body_input_event"]

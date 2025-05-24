@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmpc6iaclkjjx"]
+[gd_scene load_steps=18 format=3 uid="uid://cmpc6iaclkjjx"]
 
 [ext_resource type="Texture2D" uid="uid://cvjpuoav42dv7" path="res://art/level_0/bgSky.png" id="1_d5kir"]
 [ext_resource type="Script" uid="uid://cp0hopgbquuq0" path="res://scripts/infinite_scroll_grp.gd" id="1_plvai"]
@@ -30,6 +30,12 @@ shader_parameter/speed = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdoqa"]
 shader = ExtResource("2_d5kir")
 shader_parameter/speed = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vogc1"]
+size = Vector2(117, 85)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vogc1"]
+radius = 36.3456
 
 [node name="level_test" type="Node2D"]
 
@@ -69,18 +75,35 @@ material = SubResource("ShaderMaterial_tdoqa")
 position = Vector2(-65, 194)
 texture = ExtResource("7_r2no1")
 
-[node name="zynx" type="CanvasGroup" parent="."]
+[node name="zynx" type="CanvasGroup" parent="." node_paths=PackedStringArray("character", "colliders")]
 z_index = 7
 script = ExtResource("8_vogc1")
+character = [NodePath("body"), NodePath("head")]
+colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
 
 [node name="body" type="AnimatedSprite2D" parent="zynx"]
 sprite_frames = ExtResource("8_6g5uf")
 animation = &"default_run"
 autoplay = "default_run"
-frame_progress = 0.16846
+frame_progress = 0.0153794
+
+[node name="col_body" type="Area2D" parent="zynx/body"]
+
+[node name="col_shape_body" type="CollisionShape2D" parent="zynx/body/col_body"]
+z_index = 100
+position = Vector2(0.5, 20.5)
+shape = SubResource("RectangleShape2D_vogc1")
 
 [node name="head" type="AnimatedSprite2D" parent="zynx"]
 sprite_frames = ExtResource("9_vogc1")
 animation = &"default_run"
 autoplay = "default_run"
-frame_progress = 0.548335
+frame_progress = 0.723394
+
+[node name="col_head" type="Area2D" parent="zynx/head"]
+
+[node name="col_shape_head" type="CollisionShape2D" parent="zynx/head/col_head"]
+position = Vector2(57, 7)
+shape = SubResource("CircleShape2D_vogc1")
+
+[connection signal="input_event" from="zynx/body/col_body" to="zynx" method="_on_col_body_input_event"]
