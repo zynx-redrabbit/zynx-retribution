@@ -83,8 +83,10 @@ colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
 
 [node name="body" type="AnimatedSprite2D" parent="zynx"]
 sprite_frames = ExtResource("8_6g5uf")
-animation = &"default_run"
+animation = &"default_shell"
 autoplay = "default_run"
+frame = 23
+frame_progress = 1.0
 
 [node name="col_body" type="Area2D" parent="zynx/body"]
 
@@ -105,4 +107,5 @@ frame_progress = 0.723394
 position = Vector2(57, 7)
 shape = SubResource("CircleShape2D_vogc1")
 
+[connection signal="animation_finished" from="zynx/body" to="zynx" method="_on_body_animation_finished"]
 [connection signal="input_event" from="zynx/body/col_body" to="zynx" method="_on_col_body_input_event"]

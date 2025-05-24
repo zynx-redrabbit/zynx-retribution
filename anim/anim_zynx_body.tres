@@ -182,7 +182,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("21_8apli")
 }],
-"loop": true,
+"loop": false,
 "name": &"bat_shell",
 "speed": 15.0
 }, {
@@ -259,8 +259,62 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("21_4nogw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_scbka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3mfv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dmgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8ddby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kncng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4nogw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_scbka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3mfv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dmgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8ddby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kncng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4nogw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_scbka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3mfv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7dmgd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8ddby")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_kncng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_4nogw")
 }],
-"loop": true,
+"loop": false,
 "name": &"default_shell",
 "speed": 15.0
 }, {
@@ -338,7 +392,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("42_ws8a1")
 }],
-"loop": true,
+"loop": false,
 "name": &"fire_shell",
 "speed": 15.0
 }, {
@@ -416,7 +470,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("84_r1pcy")
 }],
-"loop": true,
+"loop": false,
 "name": &"rocket_shell",
 "speed": 15.0
 }, {
@@ -494,7 +548,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("63_k516w")
 }],
-"loop": true,
+"loop": false,
 "name": &"wing_shell",
 "speed": 15.0
 }]
