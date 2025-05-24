@@ -85,7 +85,6 @@ colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
 sprite_frames = ExtResource("8_6g5uf")
 animation = &"default_run"
 autoplay = "default_run"
-frame_progress = 0.0153794
 
 [node name="col_body" type="Area2D" parent="zynx/body"]
 
