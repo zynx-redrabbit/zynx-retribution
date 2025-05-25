@@ -15,7 +15,8 @@ class_name  PlayerControl
 @export var origin : Vector2
 @export var max : Vector2
 
-var ANIM : String = 'run'
+enum Anims {RUN, JUMP, SHELL}
+var ANIM : int = 0
 var JUMP_COUNT : float = 0
 
 var max_x : float
@@ -56,10 +57,10 @@ func update_jump_min_max() -> void:
 	
 func jump() -> void:
 	update_jump_min_max()
-	ANIM = 'jump'
+	ANIM = Anims.JUMP
 	
 func jump_complete() -> void:
-	ANIM = 'run'
+	ANIM = Anims.RUN
 	can_jump = true
 	
 func update_slide_min_max() -> void:
@@ -71,10 +72,10 @@ func update_slide_min_max() -> void:
 	
 func slide() -> void:
 	update_slide_min_max()
-	ANIM = 'shell'
+	ANIM = Anims.SHELL
 	
 func slide_complete() -> void:
-	ANIM = 'run'
+	ANIM = Anims.SHELL
 	can_jump = true
 	can_slide = true
 
@@ -83,17 +84,17 @@ func _physics_process(delta: float) -> void:
 	var velocity_x_damp = (position.x - max_x) / (min_x - max_x)
 	#print(position.distance_to(origin.position))
 	#print(velocity_x_damp)
-	if ANIM == 'run':
+	if ANIM == Anims.RUN:
 		position.x = move_toward(position.x, origin.x, (delta*to_origin_speed))
 		
-	elif ANIM == 'shell':
+	elif ANIM == Anims.SHELL:
 		var slide_damp = (position.x - slide_max_x) / (slide_min_x - slide_max_x)
 		position.x = move_toward(position.x, slide_max_x, ((delta*slide_speed)*(slide_damp*velocity_x_damp)))
 		if slide_cooldown_timer.time_left == 0:
 			slide_cooldown_timer.stop()
 			can_slide = true
 			
-	elif ANIM == 'jump':
+	elif ANIM == Anims.JUMP:
 		var x_damp = (position.x - jump_max_x) / (jump_min_x - jump_max_x)
 		var y_damp = (position.y - jump_max_y) / (jump_min_y - jump_max_y)
 		#var y_damp = sin(3.14 * ((position.y - jump_max_y) / (jump_min_y - jump_max_y)))
