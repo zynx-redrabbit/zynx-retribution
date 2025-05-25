@@ -46,6 +46,26 @@ func update_shell(type) -> void:
 	print(self.shell)
 	self.update_animation(self.Anims.get(anim))
 	
+func jump() -> void:
+	self.clicked = true
+	self.update_animation(Anims.JUMP)
+	self.player.jump()
+	
+func jump_complete() -> void:
+	self.clicked = false
+	self.update_animation(Anims.RUN)
+	self.player.jump_complete()
+	
+func slide() -> void:
+	self.clicked = true
+	self.update_animation(Anims.SHELL)
+	self.player.slide()
+	
+func slide_complete() -> void:
+	self.clicked = false
+	self.update_animation(Anims.RUN)
+	self.player.slide_complete()	
+	
 func update_animation(animation) -> void:
 	self.last_head_anim = self.head_anim
 	self.last_body_anim = self.body_anim
@@ -94,13 +114,11 @@ func _on_col_body_input_event(viewport: Node, event: InputEvent, shape_idx: int)
 	if not self.clicked and event is InputEventMouseButton:
 		var anim : String = self.BODY.animation
 		if self.anim_is(self.BODY, Anims.RUN) or self.anim_is(self.BODY, Anims.JUMP):
-			self.clicked = true
-			self.update_animation(Anims.SHELL)
-			player.slide()
+			self.slide()
 			#self.update_shell(ShellType.WING)
 
 func _on_body_animation_finished() -> void:
 	if self.anim_is(self.BODY, Anims.SHELL):
-		self.clicked = false
-		self.update_animation(Anims.RUN)
-		player.slide_complete()
+		self.slide_complete()
+	elif self.anim_is(self.BODY, Anims.JUMP):
+		self.jump_complete()

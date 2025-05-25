@@ -214,7 +214,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_7dmgd")
 }],
-"loop": true,
+"loop": false,
 "name": &"default_jump",
 "speed": 15.0
 }, {

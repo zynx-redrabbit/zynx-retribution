@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmpc6iaclkjjx"]
+[gd_scene load_steps=22 format=3 uid="uid://cmpc6iaclkjjx"]
 
 [ext_resource type="Texture2D" uid="uid://cvjpuoav42dv7" path="res://art/level_0/bgSky.png" id="1_d5kir"]
+[ext_resource type="Script" uid="uid://7lit4tmbca1x" path="res://scripts/level.gd" id="1_ddr63"]
 [ext_resource type="Script" uid="uid://cp0hopgbquuq0" path="res://scripts/infinite_scroll_grp.gd" id="1_plvai"]
 [ext_resource type="Shader" uid="uid://b6alsr7e4jyp4" path="res://shaders/scroll.gdshader" id="2_d5kir"]
 [ext_resource type="Texture2D" uid="uid://d233qf04n7h25" path="res://art/level_0/bgCastle.png" id="2_plvai"]
@@ -44,7 +45,9 @@ size = Vector2(166, 123)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdoqa"]
 size = Vector2(1185, 107)
 
-[node name="level_test" type="Node2D"]
+[node name="level_test" type="Node2D" node_paths=PackedStringArray("player_spawn")]
+script = ExtResource("1_ddr63")
+player_spawn = NodePath("player_spawn")
 
 [node name="infinite_scroll_grp" type="CanvasGroup" parent="."]
 script = ExtResource("1_plvai")
@@ -57,7 +60,7 @@ scale = Vector2(1.12207, 0.631836)
 texture = ExtResource("1_d5kir")
 
 [node name="BgCastle" type="Sprite2D" parent="infinite_scroll_grp"]
-texture_repeat = 3
+texture_repeat = 2
 material = SubResource("ShaderMaterial_7dxvt")
 position = Vector2(-106.75, -422.251)
 scale = Vector2(0.91748, 1.21338)
@@ -82,51 +85,59 @@ material = SubResource("ShaderMaterial_tdoqa")
 position = Vector2(-65, 194)
 texture = ExtResource("7_r2no1")
 
-[node name="Zynx" type="CharacterBody2D" parent="." node_paths=PackedStringArray("origin", "max")]
+[node name="__Zynx" type="CharacterBody2D" parent="." node_paths=PackedStringArray("zynx_layers", "origin", "max")]
 physics_interpolation_mode = 1
+visible = false
 position = Vector2(0, 207)
 script = ExtResource("9_ddr63")
-origin = NodePath("../player_origin")
-max = NodePath("../max_distance")
+zynx_layers = NodePath("zynx_layers")
+origin = NodePath("player_origin")
+max = NodePath("max_distance")
 
-[node name="zynx_layers" type="CanvasGroup" parent="Zynx" node_paths=PackedStringArray("character", "colliders", "player")]
+[node name="zynx_layers" type="CanvasGroup" parent="__Zynx" node_paths=PackedStringArray("character", "colliders", "player")]
 z_index = 7
 script = ExtResource("8_vogc1")
 character = [NodePath("body"), NodePath("head")]
 colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
 player = NodePath("..")
 
-[node name="body" type="AnimatedSprite2D" parent="Zynx/zynx_layers"]
+[node name="body" type="AnimatedSprite2D" parent="__Zynx/zynx_layers"]
 sprite_frames = ExtResource("8_6g5uf")
 animation = &"default_shell"
 autoplay = "default_run"
 frame = 23
 frame_progress = 1.0
 
-[node name="col_body" type="Area2D" parent="Zynx/zynx_layers/body"]
+[node name="col_body" type="Area2D" parent="__Zynx/zynx_layers/body"]
 
-[node name="col_shape_body" type="CollisionShape2D" parent="Zynx/zynx_layers/body/col_body"]
+[node name="col_shape_body" type="CollisionShape2D" parent="__Zynx/zynx_layers/body/col_body"]
 z_index = 100
 position = Vector2(0.5, 20.5)
 shape = SubResource("RectangleShape2D_vogc1")
 
-[node name="head" type="AnimatedSprite2D" parent="Zynx/zynx_layers"]
+[node name="head" type="AnimatedSprite2D" parent="__Zynx/zynx_layers"]
 sprite_frames = ExtResource("9_vogc1")
 animation = &"default_run"
 autoplay = "default_run"
 frame_progress = 0.723394
 
-[node name="col_head" type="Area2D" parent="Zynx/zynx_layers/head"]
+[node name="col_head" type="Area2D" parent="__Zynx/zynx_layers/head"]
 
-[node name="col_shape_head" type="CollisionShape2D" parent="Zynx/zynx_layers/head/col_head"]
+[node name="col_shape_head" type="CollisionShape2D" parent="__Zynx/zynx_layers/head/col_head"]
 position = Vector2(57, 7)
 shape = SubResource("CircleShape2D_vogc1")
 
-[node name="zynx_col_shape" type="CollisionShape2D" parent="Zynx"]
+[node name="zynx_col_shape" type="CollisionShape2D" parent="__Zynx"]
 physics_interpolation_mode = 1
 position = Vector2(25, 3.5)
 shape = SubResource("RectangleShape2D_ddr63")
 debug_color = Color(0.871003, 0.000489779, 0.847447, 0.42)
+
+[node name="player_origin" type="Marker2D" parent="__Zynx"]
+position = Vector2(-268, 0)
+
+[node name="max_distance" type="Marker2D" parent="__Zynx"]
+position = Vector2(549, -384)
 
 [node name="ground" type="StaticBody2D" parent="."]
 
@@ -134,11 +145,8 @@ debug_color = Color(0.871003, 0.000489779, 0.847447, 0.42)
 position = Vector2(13.5, 329.5)
 shape = SubResource("RectangleShape2D_tdoqa")
 
-[node name="player_origin" type="Marker2D" parent="."]
-position = Vector2(-268, 207)
+[node name="player_spawn" type="Marker2D" parent="."]
+position = Vector2(-2, 207)
 
-[node name="max_distance" type="Marker2D" parent="."]
-position = Vector2(549, -177)
-
-[connection signal="animation_finished" from="Zynx/zynx_layers/body" to="Zynx/zynx_layers" method="_on_body_animation_finished"]
-[connection signal="input_event" from="Zynx/zynx_layers/body/col_body" to="Zynx/zynx_layers" method="_on_col_body_input_event"]
+[connection signal="animation_finished" from="__Zynx/zynx_layers/body" to="__Zynx/zynx_layers" method="_on_body_animation_finished"]
+[connection signal="input_event" from="__Zynx/zynx_layers/body/col_body" to="__Zynx/zynx_layers" method="_on_col_body_input_event"]

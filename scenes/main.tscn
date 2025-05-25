@@ -1,10 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtwaefsx52161"]
+[gd_scene load_steps=6 format=3 uid="uid://dtwaefsx52161"]
 
 [ext_resource type="Script" uid="uid://b40x6qaojp4xs" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://cmpc6iaclkjjx" path="res://scenes/level_test.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cdau4vjb68hcd" path="res://prefabs/zynx.tscn" id="2_sugp2"]
 
-[node name="main" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0wfyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(1193, 686)
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("game_canvas")]
 script = ExtResource("1_o5qli")
-levels = Array[PackedScene]([ExtResource("2_0wfyh")])
+game_canvas = NodePath("Game")
+_player = ExtResource("2_sugp2")
+_levels = Array[PackedScene]([ExtResource("2_0wfyh")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Game" type="CanvasGroup" parent="."]
+
+[node name="screen_tap" type="Area2D" parent="Game"]
+material = SubResource("CanvasItemMaterial_0wfyh")
+
+[node name="col_screen_tap" type="CollisionShape2D" parent="Game/screen_tap"]
+z_index = -1
+z_as_relative = false
+position = Vector2(5.5, -2)
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[connection signal="input_event" from="Game/screen_tap" to="." method="_on_screen_tap_input_event"]
