@@ -9,10 +9,11 @@ class_name  PlayerControl
 @export var can_jump : bool = true
 @export var slide_distance : float = 350
 @export var slide_speed : float = 1600
-@export var slide_cooldown_duration : float = 0.5
+@export var slide_cooldown_duration : float = 0.3
+@export var can_slide : bool = true
 @export var to_origin_speed : float = 150
-@export var origin : Marker2D
-@export var max : Marker2D
+@export var origin : Vector2
+@export var max : Vector2
 
 var ANIM : String = 'run'
 var JUMP_COUNT : float = 0
@@ -32,9 +33,14 @@ var slide_max_x : float
 var slide_min_x : float
 
 func _ready() -> void:
-	get_parent().get_viewport().set_physics_object_picking_sort(true)
-	max_x = max.position.x
-	min_x = origin.position.x
+	#var screensize = DisplayServer.screen_get_size()
+	var screensize = get_parent().get_viewport_rect().size
+	var half_screen_x = screensize.x /2
+	var x_seg = half_screen_x / 8
+	max_x = half_screen_x
+	min_x = -x_seg * 6
+	origin = Vector2(min_x, 207)
+	max = Vector2(max_x, 207)
 	add_child(jump_y_timer)
 	add_child(slide_cooldown_timer)
 	jump_y_timer.one_shot = true
@@ -60,6 +66,7 @@ func update_slide_min_max() -> void:
 	slide_max_x = position.x + slide_distance
 	slide_min_x = position.x
 	can_jump = false
+	can_slide = false
 	slide_cooldown_timer.start(slide_cooldown_duration)
 	
 func slide() -> void:
@@ -68,6 +75,8 @@ func slide() -> void:
 	
 func slide_complete() -> void:
 	ANIM = 'run'
+	can_jump = true
+	can_slide = true
 
 func _physics_process(delta: float) -> void:
 	base_physics(delta)
@@ -75,14 +84,14 @@ func _physics_process(delta: float) -> void:
 	#print(position.distance_to(origin.position))
 	#print(velocity_x_damp)
 	if ANIM == 'run':
-		position.x = move_toward(position.x, origin.position.x, (delta*to_origin_speed))
+		position.x = move_toward(position.x, origin.x, (delta*to_origin_speed))
 		
 	elif ANIM == 'shell':
 		var slide_damp = (position.x - slide_max_x) / (slide_min_x - slide_max_x)
 		position.x = move_toward(position.x, slide_max_x, ((delta*slide_speed)*(slide_damp*velocity_x_damp)))
 		if slide_cooldown_timer.time_left == 0:
 			slide_cooldown_timer.stop()
-			can_jump = true
+			can_slide = true
 			
 	elif ANIM == 'jump':
 		var x_damp = (position.x - jump_max_x) / (jump_min_x - jump_max_x)
@@ -95,7 +104,7 @@ func _physics_process(delta: float) -> void:
 		if jump_y_timer.time_left > 0:
 			var y_speed = speed * 4;
 			position.y = move_toward(position.y, jump_max_y, ((delta*y_speed)*y_damp))
-			print(position.y)
+			#print(position.y)
 		else:
 			can_jump = true
 			jump_y_timer.stop()

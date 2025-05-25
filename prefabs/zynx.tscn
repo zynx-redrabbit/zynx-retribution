@@ -14,13 +14,11 @@ radius = 36.3456
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddr63"]
 size = Vector2(166, 123)
 
-[node name="Zynx" type="CharacterBody2D" node_paths=PackedStringArray("zynx_layers", "origin", "max")]
+[node name="Zynx" type="CharacterBody2D" node_paths=PackedStringArray("zynx_layers")]
 physics_interpolation_mode = 1
 z_index = 100
 script = ExtResource("1_8jsny")
 zynx_layers = NodePath("zynx_layers")
-origin = NodePath("player_origin")
-max = NodePath("max_distance")
 
 [node name="zynx_layers" type="CanvasGroup" parent="." node_paths=PackedStringArray("character", "colliders", "player")]
 z_index = 7

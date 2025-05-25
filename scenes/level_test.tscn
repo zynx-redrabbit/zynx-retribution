@@ -85,14 +85,12 @@ material = SubResource("ShaderMaterial_tdoqa")
 position = Vector2(-65, 194)
 texture = ExtResource("7_r2no1")
 
-[node name="__Zynx" type="CharacterBody2D" parent="." node_paths=PackedStringArray("zynx_layers", "origin", "max")]
+[node name="__Zynx" type="CharacterBody2D" parent="." node_paths=PackedStringArray("zynx_layers")]
 physics_interpolation_mode = 1
 visible = false
 position = Vector2(0, 207)
 script = ExtResource("9_ddr63")
 zynx_layers = NodePath("zynx_layers")
-origin = NodePath("player_origin")
-max = NodePath("max_distance")
 
 [node name="zynx_layers" type="CanvasGroup" parent="__Zynx" node_paths=PackedStringArray("character", "colliders", "player")]
 z_index = 7

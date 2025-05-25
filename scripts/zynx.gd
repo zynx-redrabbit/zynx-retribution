@@ -112,9 +112,9 @@ func anim_enum_changed(animation) -> void:
 	self.body_anim = self.anim_name_body(animation)
 
 func _on_col_body_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if not self.shell_tapped and event is InputEventMouseButton:
+	if event is InputEventMouseButton:
 		var anim : String = self.BODY.animation
-		if self.anim_is(self.BODY, Anims.RUN) or self.anim_is(self.BODY, Anims.JUMP):
+		if self.player.can_slide:
 			self.slide()
 			#self.update_shell(ShellType.WING)
 
