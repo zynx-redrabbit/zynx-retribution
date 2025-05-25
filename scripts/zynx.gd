@@ -7,6 +7,7 @@ enum Anims {RUN, JUMP, SHELL}
 
 @export var character : Array[AnimatedSprite2D]
 @export var colliders : Array[Area2D]
+@export var player : PlayerControl
 
 @export var shell_type : ShellType:
 	set(value):
@@ -95,9 +96,11 @@ func _on_col_body_input_event(viewport: Node, event: InputEvent, shape_idx: int)
 		if self.anim_is(self.BODY, Anims.RUN) or self.anim_is(self.BODY, Anims.JUMP):
 			self.clicked = true
 			self.update_animation(Anims.SHELL)
+			player.slide()
 			#self.update_shell(ShellType.WING)
 
 func _on_body_animation_finished() -> void:
 	if self.anim_is(self.BODY, Anims.SHELL):
 		self.clicked = false
 		self.update_animation(Anims.RUN)
+		player.slide_complete()

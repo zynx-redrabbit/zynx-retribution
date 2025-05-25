@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmpc6iaclkjjx"]
+[gd_scene load_steps=21 format=3 uid="uid://cmpc6iaclkjjx"]
 
 [ext_resource type="Texture2D" uid="uid://cvjpuoav42dv7" path="res://art/level_0/bgSky.png" id="1_d5kir"]
 [ext_resource type="Script" uid="uid://cp0hopgbquuq0" path="res://scripts/infinite_scroll_grp.gd" id="1_plvai"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dov4dfd6b7l2o" path="res://art/level_0/bgScroll00.png" id="7_r2no1"]
 [ext_resource type="SpriteFrames" uid="uid://dfwljrj1drwvn" path="res://anim/anim_zynx_body.tres" id="8_6g5uf"]
 [ext_resource type="Script" uid="uid://bnbkcpowrghdx" path="res://scripts/zynx.gd" id="8_vogc1"]
+[ext_resource type="Script" uid="uid://dyw4kn87bd4h8" path="res://scripts/player_control.gd" id="9_ddr63"]
 [ext_resource type="SpriteFrames" uid="uid://cp1y57w3q20xs" path="res://anim/anim_zynx_head.tres" id="9_vogc1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r2no1"]
@@ -36,6 +37,12 @@ size = Vector2(117, 85)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vogc1"]
 radius = 36.3456
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddr63"]
+size = Vector2(166, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdoqa"]
+size = Vector2(1185, 107)
 
 [node name="level_test" type="Node2D"]
 
@@ -75,37 +82,63 @@ material = SubResource("ShaderMaterial_tdoqa")
 position = Vector2(-65, 194)
 texture = ExtResource("7_r2no1")
 
-[node name="zynx" type="CanvasGroup" parent="." node_paths=PackedStringArray("character", "colliders")]
+[node name="Zynx" type="CharacterBody2D" parent="." node_paths=PackedStringArray("origin", "max")]
+physics_interpolation_mode = 1
+position = Vector2(0, 207)
+script = ExtResource("9_ddr63")
+origin = NodePath("../player_origin")
+max = NodePath("../max_distance")
+
+[node name="zynx_layers" type="CanvasGroup" parent="Zynx" node_paths=PackedStringArray("character", "colliders", "player")]
 z_index = 7
 script = ExtResource("8_vogc1")
 character = [NodePath("body"), NodePath("head")]
 colliders = [NodePath("body/col_body"), NodePath("head/col_head")]
+player = NodePath("..")
 
-[node name="body" type="AnimatedSprite2D" parent="zynx"]
+[node name="body" type="AnimatedSprite2D" parent="Zynx/zynx_layers"]
 sprite_frames = ExtResource("8_6g5uf")
 animation = &"default_shell"
 autoplay = "default_run"
 frame = 23
 frame_progress = 1.0
 
-[node name="col_body" type="Area2D" parent="zynx/body"]
+[node name="col_body" type="Area2D" parent="Zynx/zynx_layers/body"]
 
-[node name="col_shape_body" type="CollisionShape2D" parent="zynx/body/col_body"]
+[node name="col_shape_body" type="CollisionShape2D" parent="Zynx/zynx_layers/body/col_body"]
 z_index = 100
 position = Vector2(0.5, 20.5)
 shape = SubResource("RectangleShape2D_vogc1")
 
-[node name="head" type="AnimatedSprite2D" parent="zynx"]
+[node name="head" type="AnimatedSprite2D" parent="Zynx/zynx_layers"]
 sprite_frames = ExtResource("9_vogc1")
 animation = &"default_run"
 autoplay = "default_run"
 frame_progress = 0.723394
 
-[node name="col_head" type="Area2D" parent="zynx/head"]
+[node name="col_head" type="Area2D" parent="Zynx/zynx_layers/head"]
 
-[node name="col_shape_head" type="CollisionShape2D" parent="zynx/head/col_head"]
+[node name="col_shape_head" type="CollisionShape2D" parent="Zynx/zynx_layers/head/col_head"]
 position = Vector2(57, 7)
 shape = SubResource("CircleShape2D_vogc1")
 
-[connection signal="animation_finished" from="zynx/body" to="zynx" method="_on_body_animation_finished"]
-[connection signal="input_event" from="zynx/body/col_body" to="zynx" method="_on_col_body_input_event"]
+[node name="zynx_col_shape" type="CollisionShape2D" parent="Zynx"]
+physics_interpolation_mode = 1
+position = Vector2(25, 3.5)
+shape = SubResource("RectangleShape2D_ddr63")
+debug_color = Color(0.871003, 0.000489779, 0.847447, 0.42)
+
+[node name="ground" type="StaticBody2D" parent="."]
+
+[node name="ground_shape" type="CollisionShape2D" parent="ground"]
+position = Vector2(13.5, 329.5)
+shape = SubResource("RectangleShape2D_tdoqa")
+
+[node name="player_origin" type="Marker2D" parent="."]
+position = Vector2(-268, 207)
+
+[node name="max_distance" type="Marker2D" parent="."]
+position = Vector2(549, -177)
+
+[connection signal="animation_finished" from="Zynx/zynx_layers/body" to="Zynx/zynx_layers" method="_on_body_animation_finished"]
+[connection signal="input_event" from="Zynx/zynx_layers/body/col_body" to="Zynx/zynx_layers" method="_on_col_body_input_event"]
