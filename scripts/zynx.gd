@@ -29,7 +29,7 @@ var body_anim : String
 var last_head_anim : String
 var last_body_anim : String
 
-var clicked : bool = false
+var shell_tapped : bool = false
 
 var HEAD : AnimatedSprite2D
 var BODY : AnimatedSprite2D
@@ -47,22 +47,20 @@ func update_shell(type) -> void:
 	self.update_animation(self.Anims.get(anim))
 	
 func jump() -> void:
-	self.clicked = true
 	self.update_animation(Anims.JUMP)
 	self.player.jump()
 	
 func jump_complete() -> void:
-	self.clicked = false
 	self.update_animation(Anims.RUN)
 	self.player.jump_complete()
 	
 func slide() -> void:
-	self.clicked = true
+	self.shell_tapped = true
 	self.update_animation(Anims.SHELL)
 	self.player.slide()
 	
 func slide_complete() -> void:
-	self.clicked = false
+	self.shell_tapped = false
 	self.update_animation(Anims.RUN)
 	self.player.slide_complete()	
 	
@@ -75,6 +73,9 @@ func update_animation(animation) -> void:
 	self.BODY.animation = self.body_anim
 	self.HEAD.play()
 	self.BODY.play()
+	
+func body_size() -> Vector2:
+	return BODY.sprite_frames.get_frame_texture(BODY.animation, BODY.frame).get_size()
 	
 func anim_is(part : AnimatedSprite2D, animation : int):
 	var current_anim : String = part.animation
@@ -111,7 +112,7 @@ func anim_enum_changed(animation) -> void:
 	self.body_anim = self.anim_name_body(animation)
 
 func _on_col_body_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if not self.clicked and event is InputEventMouseButton:
+	if not self.shell_tapped and event is InputEventMouseButton:
 		var anim : String = self.BODY.animation
 		if self.anim_is(self.BODY, Anims.RUN) or self.anim_is(self.BODY, Anims.JUMP):
 			self.slide()

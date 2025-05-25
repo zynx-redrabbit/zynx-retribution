@@ -6,17 +6,18 @@ extends Node2D
 enum selected_level {TEST}
 
 var level : Level
+var player : PlayerControl
 var zynx : Zynx
 
 func _ready() -> void:
-	var level = _levels[selected_level.TEST].instantiate()
-	var player = _player.instantiate()
+	level = _levels[selected_level.TEST].instantiate()
+	player = _player.instantiate()
 	game_canvas.add_child(level)
 	level.add_child(player)
 	player.position = level.player_spawn.position
 	zynx = player.zynx_layers
 	
 func _on_screen_tap_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if not zynx.clicked and event is InputEventMouseButton:
+	if player.can_jump and event is InputEventMouseButton:
 		print('screen tap')
 		zynx.jump()

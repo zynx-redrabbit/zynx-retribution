@@ -6,7 +6,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cp1y57w3q20xs" path="res://anim/anim_zynx_head.tres" id="4_wspt0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vogc1"]
-size = Vector2(117, 85)
+size = Vector2(131, 118)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vogc1"]
 radius = 36.3456
@@ -16,6 +16,7 @@ size = Vector2(166, 123)
 
 [node name="Zynx" type="CharacterBody2D" node_paths=PackedStringArray("zynx_layers", "origin", "max")]
 physics_interpolation_mode = 1
+z_index = 100
 script = ExtResource("1_8jsny")
 zynx_layers = NodePath("zynx_layers")
 origin = NodePath("player_origin")
@@ -30,16 +31,14 @@ player = NodePath("..")
 
 [node name="body" type="AnimatedSprite2D" parent="zynx_layers"]
 sprite_frames = ExtResource("3_11r1h")
-animation = &"default_shell"
+animation = &"default_jump"
 autoplay = "default_run"
-frame = 23
-frame_progress = 1.0
 
 [node name="col_body" type="Area2D" parent="zynx_layers/body"]
 
 [node name="col_shape_body" type="CollisionShape2D" parent="zynx_layers/body/col_body"]
 z_index = 100
-position = Vector2(0.5, 20.5)
+position = Vector2(-1.5, 20)
 shape = SubResource("RectangleShape2D_vogc1")
 
 [node name="head" type="AnimatedSprite2D" parent="zynx_layers"]
