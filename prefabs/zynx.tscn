@@ -57,11 +57,5 @@ position = Vector2(25, 3.5)
 shape = SubResource("RectangleShape2D_ddr63")
 debug_color = Color(0.871003, 0.000489779, 0.847447, 0.42)
 
-[node name="player_origin" type="Marker2D" parent="."]
-position = Vector2(-268, 0)
-
-[node name="max_distance" type="Marker2D" parent="."]
-position = Vector2(549, -384)
-
 [connection signal="animation_finished" from="zynx_layers/body" to="zynx_layers" method="_on_body_animation_finished"]
 [connection signal="input_event" from="zynx_layers/body/col_body" to="zynx_layers" method="_on_col_body_input_event"]

@@ -75,7 +75,7 @@ func slide() -> void:
 	ANIM = Anims.SHELL
 	
 func slide_complete() -> void:
-	ANIM = Anims.SHELL
+	ANIM = Anims.RUN
 	can_jump = true
 	can_slide = true
 
