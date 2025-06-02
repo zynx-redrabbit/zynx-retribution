@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmpc6iaclkjjx"]
+[gd_scene load_steps=27 format=3 uid="uid://cmpc6iaclkjjx"]
 
 [ext_resource type="Texture2D" uid="uid://cvjpuoav42dv7" path="res://art/level_0/bgSky.png" id="1_d5kir"]
 [ext_resource type="Script" uid="uid://7lit4tmbca1x" path="res://scripts/level.gd" id="1_ddr63"]
@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://bnbkcpowrghdx" path="res://scripts/zynx.gd" id="8_vogc1"]
 [ext_resource type="Script" uid="uid://dyw4kn87bd4h8" path="res://scripts/player_control.gd" id="9_ddr63"]
 [ext_resource type="SpriteFrames" uid="uid://cp1y57w3q20xs" path="res://anim/anim_zynx_head.tres" id="9_vogc1"]
+[ext_resource type="Script" uid="uid://dosc43yv8l7yq" path="res://scripts/character_obstacle.gd" id="13_0dj0t"]
+[ext_resource type="Script" uid="uid://brmka56wiqugs" path="res://scripts/character_layers.gd" id="14_w0l5l"]
+[ext_resource type="SpriteFrames" uid="uid://d1d7ycucice65" path="res://anim/anim_snurble_0.tres" id="15_e0wnd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r2no1"]
 shader = ExtResource("2_d5kir")
@@ -44,6 +47,10 @@ size = Vector2(166, 123)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tdoqa"]
 size = Vector2(1185, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n44uc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w0l5l"]
 
 [node name="level_test" type="Node2D" node_paths=PackedStringArray("player_spawn")]
 script = ExtResource("1_ddr63")
@@ -145,6 +152,29 @@ shape = SubResource("RectangleShape2D_tdoqa")
 
 [node name="player_spawn" type="Marker2D" parent="."]
 position = Vector2(-2, 207)
+
+[node name="CharacterObstacle" type="CharacterBody2D" parent="." node_paths=PackedStringArray("character")]
+z_index = 1000
+script = ExtResource("13_0dj0t")
+character = NodePath("character_layers")
+metadata/_custom_type_script = "uid://dosc43yv8l7yq"
+
+[node name="character_layers" type="CanvasGroup" parent="CharacterObstacle" node_paths=PackedStringArray("character", "colliders")]
+script = ExtResource("14_w0l5l")
+character = [NodePath("body")]
+colliders = [NodePath("body/col_body")]
+
+[node name="body" type="AnimatedSprite2D" parent="CharacterObstacle/character_layers"]
+sprite_frames = ExtResource("15_e0wnd")
+animation = &"shell"
+
+[node name="col_body" type="Area2D" parent="CharacterObstacle/character_layers/body"]
+
+[node name="col_shape_body" type="CollisionShape2D" parent="CharacterObstacle/character_layers/body/col_body"]
+shape = SubResource("RectangleShape2D_n44uc")
+
+[node name="obstacle_col_shape" type="CollisionShape2D" parent="CharacterObstacle"]
+shape = SubResource("RectangleShape2D_w0l5l")
 
 [connection signal="animation_finished" from="__Zynx/zynx_layers/body" to="__Zynx/zynx_layers" method="_on_body_animation_finished"]
 [connection signal="input_event" from="__Zynx/zynx_layers/body/col_body" to="__Zynx/zynx_layers" method="_on_col_body_input_event"]
